@@ -3,7 +3,8 @@ from tkinter import *
 root = Tk()
 root.title('Simulador paginacion bajo demanda')
 root.geometry("800x700")
-
+root.resizable(False,False)
+root.config(bg="#082032")
 
 
 def start():
@@ -60,15 +61,20 @@ so = Entry(root, width = 60)
 proc = Entry(root, width = 60)
 marcos = Entry(root, width = 60)
 
+text = Label(root, text=" Simulación de la paginación\nbajo demanda controlada por contador",bg="#FF4C29")
+text.place(x=300,y=90)
+
 my_button = Button(root, 
-    text="Click Me!", 
+    text="Iniciar", 
     command=start,
     font=("Helvetica", 24),
-    fg="red")
-my_button.pack(pady=200)
+    fg="#DDDDDD",
+    bg="#FF4C29")
+my_button.pack(pady=100)
+my_button.place(x=350, y=525)
 
 my_button2 = Button(root, 
-    text="Read!", 
+    text="Ingresar", 
     command=check_values,
     font=("Helvetica", 24),
     fg="red")
@@ -85,13 +91,6 @@ def on_focus_out(entry, placeholder):
         entry.configure(state='disabled')
 
 root.mainloop()
-
-
-
-
-
-
-
 
 # if __name__ == '__main__':
 #     main()
