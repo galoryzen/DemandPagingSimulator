@@ -8,8 +8,18 @@ root.config(bg="#082032")
 
 
 def start():
-    my_button.destroy()
-    my_button2.pack(pady=100)
+    clear()
+
+    my_button2 = Button(root, 
+        text="Ingresar", 
+        command=check_values,
+        font=("Helvetica", 24),
+        fg="red")
+
+    tam_marco = Entry(root, width = 60)
+    so = Entry(root, width = 60)
+    proc = Entry(root, width = 60)
+    marcos = Entry(root, width = 60)
 
     Label(root, text="Tamaño del marco").pack()
 
@@ -35,6 +45,8 @@ def start():
     marcos.insert(0, 'EJ: 7 9 10, que no entren en conflicto con los marcos del SO')
     marcos.configure(state='disabled')
 
+    my_button2.pack(pady=50)
+
     tam_marco_focus_in = tam_marco.bind('<Button-1>', lambda x: on_focus_in(tam_marco))
     tam_marco_focus_out = tam_marco.bind(
         '<FocusOut>', lambda x: on_focus_out(tam_marco, 'EJ: 16'))
@@ -52,14 +64,7 @@ def start():
         '<FocusOut>', lambda x: on_focus_out(marcos, 'EJ: 7 9 10, que no entren en conflicto con los marcos del SO'))
 
 def check_values():
-    for widget in root.winfo_children():
-        widget.destroy()
-        
-
-tam_marco = Entry(root, width = 60)
-so = Entry(root, width = 60)
-proc = Entry(root, width = 60)
-marcos = Entry(root, width = 60)
+    clear()
 
 text = Label(root, text=" Simulación de la paginación\nbajo demanda controlada por contador",bg="#FF4C29")
 text.place(x=300,y=90)
@@ -70,14 +75,9 @@ my_button = Button(root,
     font=("Helvetica", 24),
     fg="#DDDDDD",
     bg="#FF4C29")
+
 my_button.pack(pady=100)
 my_button.place(x=350, y=525)
-
-my_button2 = Button(root, 
-    text="Ingresar", 
-    command=check_values,
-    font=("Helvetica", 24),
-    fg="red")
 
 def on_focus_in(entry):
     if entry.cget('state') == 'disabled':
@@ -89,6 +89,10 @@ def on_focus_out(entry, placeholder):
     if entry.get() == "":
         entry.insert(0, placeholder)
         entry.configure(state='disabled')
+
+def clear():
+    for widget in root.winfo_children():
+        widget.destroy()
 
 root.mainloop()
 
