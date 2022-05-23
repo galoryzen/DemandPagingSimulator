@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 import math as mt
+import csv
 
 from pyparsing import col
 
@@ -9,7 +10,7 @@ root.title('Simulador paginacion bajo demanda')
 root.geometry("1000x700")
 root.resizable(False,False)
 
-speed = 500
+speed = 700
 anim_speed = 5
 anim_speed2 = 5
 true_speed = 15
@@ -63,10 +64,13 @@ def start_iterations(tam_marco, so, proc, marcos, marcos_so):
 
     content = ttk.Frame(root, padding=40)
 
-    
-
-    with open(f"{__file__.rstrip('main.py')}input.txt", "r") as f:
-        instrucciones = [line.strip().split(' ') for line in f]
+    instrucciones = []
+    with open('Entrada.csv', encoding='utf-8-sig') as f:
+        opened_file = csv.reader(f, delimiter=',')
+        for row in opened_file:
+            instrucciones.append(row)
+            
+    instrucciones = tuple(zip(instrucciones[0], instrucciones[1]))
     
     paginas_proc = list(range(mt.ceil(proc/tam_marco)))
     instrucciones = [(int(tuple[0]), tuple[1]) for tuple in instrucciones]
