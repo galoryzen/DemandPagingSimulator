@@ -117,7 +117,7 @@ def start_iterations(tam_marco, so, proc, marcos, marcos_so, instrucciones):
     pilacola = []
 
     memoria = marcos_so + marcos
-    pady=70/len(paginas_proc)
+    pady=10
     # pady2=70/len(memoria)
 
     labelinstruccion = ttk.Label(content, text=" ", font=('Helvetica', 12))
@@ -134,10 +134,10 @@ def start_iterations(tam_marco, so, proc, marcos, marcos_so, instrucciones):
     bs = [Button(content, text=f'Página {pagina}', width=10, pady=pady, bg='white') for pagina in paginas_proc]
     ms = [Button(content, text=f'Marco {marco}', width=10, pady=pady, bg='yellow') if marco in marcos_so else Button(content, text=f'Marco {marco}', width=10, pady=pady, bg='white') for marco in memoria]
 
-    incrementarVIbt = Button(content, text=f'+ Velocidad Proceso', width=20, pady=pady, bg='darkolivegreen3', command=incrementarVI)
-    incrementarANbt = Button(content, text=f'+ Velocidad Animaciones', width=20, pady=pady, bg='darkolivegreen3', command=incrementarAN)
-    disminuirVIbt = Button(content, text=f'- Velocidad Proceso', width=20, pady=pady, bg='darkorange2', command=disminuirVI)
-    disminuirANbt = Button(content, text=f'- Velocidad Animaciones', width=20, pady=pady, bg='darkorange2', command=disminuirAN)
+    incrementarVIbt = Button(content, text=f'+ Velocidad Proceso', width=20, pady=pady, bg='#082032', fg='#DDDDDD', command=incrementarVI)
+    incrementarANbt = Button(content, text=f'+ Velocidad Animaciones', width=20, pady=pady, bg='#082032',fg='#DDDDDD', command=incrementarAN)
+    disminuirVIbt = Button(content, text=f'- Velocidad Proceso', width=20, pady=pady, bg='#FF4C29', command=disminuirVI)
+    disminuirANbt = Button(content, text=f'- Velocidad Animaciones', width=20, pady=pady, bg='#FF4C29', command=disminuirAN)
 
     framebt1 = ttk.Frame(content, width=80, height=25)
     framebt2 = ttk.Frame(content, width=80, height=25)
@@ -443,8 +443,8 @@ def start_iterations(tam_marco, so, proc, marcos, marcos_so, instrucciones):
             salida_archivo += f'Pilacola: {str(pilacola)}'
         salida_archivo+= f'\n{"-"*30+"//"+"-"*30}\n\n'
 
-    bitacora.config(text=f'Fin de la ejecucion')
-    salida_archivo += f'Fin de la ejecucion\n'
+    bitacora.config(text=f'Fin de la ejecución, Su bitacora se encuentra en el archivo bitacora.txt')
+    salida_archivo += f'Fin de la ejecución\n'
     labelinstruccion.config(text=f'No. Fallos de página: {fallos},   No. reemplazos: {reemplazos}')
     salida_archivo += f'No. Fallos de página: {fallos},   No. reemplazos: {reemplazos}'
 
@@ -588,7 +588,7 @@ def check_values():
         return
     
     if a & b:
-        wlabel.config(text=f'Los marcos libres están en conflictos con los marcos que utilizará el SO que son: {" ".join(temp)}\n')
+        wlabel.config(text=f'Los marcos libres están en conflictos con los marcos que utilizará el SO que son: {str(marcos_so)}\n')
         return
     
     instrucciones = []
